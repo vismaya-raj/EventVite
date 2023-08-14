@@ -17,14 +17,10 @@ export default function Party() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "50vh",
+      
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+   
         <Box
           sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: "background.paper" }}
         >
@@ -102,7 +98,7 @@ export default function Party() {
             />
           </Tabs>
         </Box>
-      </motion.div>
+   
     </div>
   );
 }

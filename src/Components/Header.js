@@ -37,18 +37,18 @@ function Header() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar >
+      <Container maxWidth="100vw">
         <Toolbar disableGutters>
         <Avatar alt="Remy Sharp" src="https://img.freepik.com/premium-vector/alphabetical-letter-e-logo-collection_647881-448.jpg" />
-          
+     
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mx: 2, 
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
