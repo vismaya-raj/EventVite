@@ -3,6 +3,7 @@ import Header from './Header'
 import Party from './Party'
 import { Box,Grid } from '@mui/material'
 import { motion } from "framer-motion";
+import EventInviation from './EventInvitation';
 
 export default function Home() {
   return (
@@ -62,6 +63,7 @@ export default function Home() {
     <Grid item md={10} >
    
       <Party/>
+      <EventInviation/>
      
     
       
