@@ -24,13 +24,13 @@ export default function EventInviation() {
       }}
     >
       <Grid container justifyContent="center" alignItems="center">
-        <Grid md={1}></Grid>
+        <Grid md={1} xs={12}></Grid>
   
-        <Grid md={4}>
+        <Grid md={4} xs={12}>
           <Stack
             component="form"
             sx={{
-              width: "50ch",
+              // width: "50ch",
               bgcolor: "background.paper",
             }}
             spacing={2}
@@ -48,11 +48,11 @@ export default function EventInviation() {
             <TextField label="State" id="filled-hidden-label-normal" />
           </Stack>
         </Grid>
-        <Grid md={4}>
+        <Grid md={4} xs={12}>
           <Stack
             component="form"
             sx={{
-              width: "50ch",
+              // width: "50ch",
               bgcolor: "background.paper",
             }}
             spacing={2}
@@ -84,10 +84,17 @@ export default function EventInviation() {
               }}
             />
             <TextField label="Time" id="filled-hidden-label-normal" />
+            <TextField
+          id="outlined-multiline-static"
+          label="Event Description"
+          multiline
+          rows={10}
+        
+        />
           
           </Stack>
         </Grid>
-        <Grid md={3}>
+        <Grid md={3} xs={12}>
           <Box>
             <img src="https://png.pngtree.com/png-vector/20220327/ourmid/pngtree-handdrawn-wedding-envelope-watercolor-floral-png-png-image_4516158.png" />
           </Box>
