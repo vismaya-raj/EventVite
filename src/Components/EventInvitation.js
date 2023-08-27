@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Box, Grid, Stack, TextField, MenuItem } from "@mui/material";
+import { Button } from "@mui/base";
 
 const eventType = [
   {
@@ -99,6 +100,7 @@ export default function EventInviation() {
             <img src="https://png.pngtree.com/png-vector/20220327/ourmid/pngtree-handdrawn-wedding-envelope-watercolor-floral-png-png-image_4516158.png" />
           </Box>
         </Grid>
+        <button>Submit</button>
       </Grid>
     </div>
   );

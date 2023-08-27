@@ -3,13 +3,21 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
+import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import EventInviation from "./EventInvitation";
 export default function Party() {
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  // const [value, setValue] = React.useState(0);
+  const [currentTabIndex, setCurrentTabIndex] = React.useState(0);
+ 
+  const handleTabChange = (e, tabIndex) => {
+    console.log(tabIndex);
+    setCurrentTabIndex(tabIndex);
   };
+
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
 
   return (
     <div
@@ -22,11 +30,14 @@ export default function Party() {
     >
    
         <Box
-          sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: "background.paper" }}
+          sx={{ maxWidth: { xs: 320, sm: 1500 }, bgcolor: "background.paper" }}
         >
+          <React.Fragment>
           <Tabs
-            value={value}
-            onChange={handleChange}
+            // value={value}
+            // onChange={handleChange}
+            value={currentTabIndex} 
+            onChange={handleTabChange}
             variant="scrollable"
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
@@ -96,7 +107,38 @@ export default function Party() {
                 </motion.div>
               }
             />
-          </Tabs>
+            
+          </Tabs> 
+          {currentTabIndex === 0 && (
+        <Box sx={{ backgroundColor:"background.paper" }}>
+          <Typography variant='h5'>Birthday</Typography>
+         <EventInviation/>
+        </Box>
+      )}
+                {currentTabIndex === 1 && (
+        <Box sx={{ backgroundColor:"background.paper" }}>
+          <Typography variant='h5'>Wedding</Typography>
+          {/* <Typography variant='p'> */}
+<EventInviation/>
+          {/* </Typography> */}
+        </Box>
+      )}
+                     {currentTabIndex === 2 && (
+        <Box sx={{ backgroundColor:"background.paper" }}>
+         
+          <Typography variant='h5'>HouseWarming</Typography>
+         <EventInviation/>
+        </Box>
+      )}
+                     {currentTabIndex === 3 && (
+        <Box sx={{ backgroundColor:"background.paper" }}>
+ <Typography variant='h5'>Baby Shower</Typography>
+         <EventInviation/>
+        </Box>
+      )}
+      
+
+          </React.Fragment>
         </Box>
    
     </div>

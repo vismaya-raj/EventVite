@@ -63,7 +63,7 @@ export default function Home() {
     <Grid item md={10} >
    
       <Party/>
-      <EventInviation/>
+      {/* <EventInviation/> */}
      
     
       
