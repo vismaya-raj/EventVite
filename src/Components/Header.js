@@ -107,9 +107,26 @@ const responseGoogle = (response) => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Login">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+
+            <div>
+      {isLoggedIn ? (
+        // If the user is logged in, display the profile picture
+        <img
+          src={profilePicture}
+          alt="User Profile"
+          onClick={handleOpenUserMenu}
+          style={{ width: '33px', borderRadius: '50%' }}
+        />
+      ) : (
+        // If the user is not logged in, display the AccountCircleIcon
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <AccountCircleIcon />
+        </IconButton>
+      )}
+    </div>
+              {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <AccountCircleIcon />
-              </IconButton>
+              </IconButton> */}
             </Tooltip>
             <Menu
               sx={{ mt: "45px" }}
@@ -125,7 +142,7 @@ const responseGoogle = (response) => {
                 horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
-              // onClose={handleCloseUserMenu}
+              onClose={handleCloseUserMenu}
             >
               {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
