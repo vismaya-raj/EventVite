@@ -1,176 +1,130 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Container,
+  Avatar,
+  IconButton,
+  Tooltip,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { GoogleLogin } from "react-google-login";
 import { useState } from "react";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
-function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+const Header = () => {
+  const [anchorElUser, setAnchorElUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-const [profilePicture, setProfilePicture] = useState('');
-const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profilePicture, setProfilePicture] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     setProfilePicture('');
     setIsLoggedIn(false);
-    // Perform any additional logout logic, such as signing out from Google's API
   };
+
   const clientId = "267021333088-aip70ei1iihpnkvgg7vhrovou1ro3uet.apps.googleusercontent.com";
 
-const responseGoogle = (response) => {
-  console.log(response); // Check the entire response object
-  if (response.accessToken) {
-    console.log(response.accessToken);
-    setIsAuthenticated(true);
-    setProfilePicture(response.profileObj.imageUrl);
-    setIsLoggedIn(true);
-  }
-};
+  const responseGoogle = (response) => {
+    if (response.accessToken) {
+      setIsAuthenticated(true);
+      setProfilePicture(response.profileObj.imageUrl);
+      setIsLoggedIn(true);
+    }
+  };
 
   return (
-    <AppBar>
-      <Container maxWidth="100vw">
-        <Toolbar disableGutters>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://img.freepik.com/premium-vector/alphabetical-letter-e-logo-collection_647881-448.jpg"
-          />
+    <AppBar position="static" color="primary">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+          {/* Logo + Brand */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Avatar
+              alt="EventVite Logo"
+              src="https://img.freepik.com/premium-vector/alphabetical-letter-e-logo-collection_647881-448.jpg"
+              sx={{ width: 40, height: 40 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                ml: 2,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".15rem",
+                color: "inherit",
+                textDecoration: "none",
+                fontSize: { xs: "1rem", sm: "1.5rem" },
+              }}
+            >
+              EventVite
+            </Typography>
+          </Box>
 
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mx: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            EventVite
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}></Box>
-
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            EventVite
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box>
-
+          {/* User Login/Profile */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Login">
-
-            <div>
-      {isLoggedIn ? (
-        // If the user is logged in, display the profile picture
-        <img
-          src={profilePicture}
-          alt="User Profile"
-          onClick={handleOpenUserMenu}
-          style={{ width: '33px', borderRadius: '50%' }}
-        />
-      ) : (
-        // If the user is not logged in, display the AccountCircleIcon
-        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <AccountCircleIcon />
-        </IconButton>
-      )}
-    </div>
-              {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon />
-              </IconButton> */}
+            <Tooltip title={isLoggedIn ? "Account" : "Login"}>
+              <div>
+                {isLoggedIn ? (
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      src={profilePicture}
+                      alt="User"
+                      sx={{ width: 33, height: 33 }}
+                    />
+                  </IconButton>
+                ) : (
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <AccountCircleIcon sx={{ fontSize: 33 }} />
+                  </IconButton>
+                )}
+              </div>
             </Tooltip>
+
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              anchorOrigin={{ vertical: "top", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
             >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
-             <MenuItem onClick={handleCloseUserMenu}>
-             {isAuthenticated ? (
-    <>
-      <img src={profilePicture} alt="Profile" style={{ width: '33px', borderRadius: '50%' }} />
-      <MenuItem onClick={handleLogout}>Logout</MenuItem>
-    </>
-  ) : (
-    <GoogleLogin
-      clientId={clientId}
-      buttonText="Sign in with Google"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-      cookiePolicy={"single_host_origin"}
-    />
-  )}
-</MenuItem>
-
+              <MenuItem onClick={handleCloseUserMenu}>
+                {isAuthenticated ? (
+                  <Box>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  </Box>
+                ) : (
+                  <GoogleLogin
+                    clientId={clientId}
+                    buttonText="Sign in with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={"single_host_origin"}
+                  />
+                )}
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
+};
+
 export default Header;

@@ -1,80 +1,61 @@
-import React from 'react'
-import Header from './Header'
-import Party from './Party'
-import { Box,Grid } from '@mui/material'
-import { motion } from "framer-motion";
+import React from 'react';
+import Header from './Header';
+import Party from './Party';
+import { Box, Grid, Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 import EventInviation from './EventInvitation';
 
 export default function Home() {
   return (
-//     <div>
+    <div>
+      <Header />
+      <Grid container justifyContent="center" alignItems="center">
+        {/* Hero Section */}
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              textAlign: 'center',
+              backgroundImage:
+                'url("https://png.pngtree.com/background/20210709/original/pngtree-pink-flower-plant-floral-background-picture-image_280966.jpg")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              minHeight: '40vh',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              px: 2, // padding for small screens
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <Typography
+                variant="h4"
+                component="h1"
+                sx={{
+                  fontWeight: 600,
+                  color: 'black',
+                  maxWidth: '800px',
+                  mx: 'auto',
+                  fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                }}
+              >
+                Bringing Dreams to Life: Join us for an unforgettable experience!
+              </Typography>
+            </motion.div>
+          </Box>
+        </Grid>
 
-//       <Header/>
-//       <Box sx={{
-//   backgroundColor: "red",
-//   width: "600px",
-//   display: 'flex',
-//   justifyContent: 'center',
-//   alignItems: 'center',
- 
-// }}>
-//   <h1>Bringing Dreams to Life: Join us for an unforgettable experience!</h1>
-// </Box>
-//     <Party/>
-//     </div>
-//   )
-// }
-
-<div>
-<Header/>
-<Grid container justifyContent="center" alignItems="center">
-    <Grid item md={12}>
-  
-    <Box sx={{
-  textAlign: 'center',
-  backgroundImage: 'url("https://png.pngtree.com/background/20210709/original/pngtree-pink-flower-plant-floral-background-picture-image_280966.jpg")',
-  backgroundSize: 'cover', // Ensure the image covers the entire box
-  backgroundPosition: 'center', // Center the image within the box
-  minHeight: '40vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  
-}}>
-     <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <h1>Bringing Dreams to Life: Join us for an unforgettable experience!</h1>
-        </motion.div> 
-</Box>
-
-
-    
-      
-    </Grid>
-    <Grid item md={1} style={{ height: "100%" }}>
-   
-    
-      
-    </Grid>
-    <Grid item md={10} >
-   
-      <Party/>
-      {/* <EventInviation/> */}
-     
-    
-      
-    </Grid>
-    <Grid item md={1} style={{ height: "100%" }}>
-    
-    
-      
-    </Grid>
-    </Grid>
-    
-</div>
-  )
+        {/* Party Section */}
+        <Grid item xs={12} sm={10} md={10}>
+          <Party />
+          {/* You can uncomment this to show the form */}
+          {/* <EventInviation /> */}
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
